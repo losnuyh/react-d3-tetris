@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import TetrisFrame from './components/frame';
+import Tetris from './components/frame';
 
 
 class App extends Component {
   render() {
     return (
         <div>
-          <TetrisFrame />
+          <Tetris />
         </div>
     );
   }

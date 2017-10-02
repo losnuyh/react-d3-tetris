@@ -4,7 +4,7 @@ import './style.css';
 import Title from './title';
 
 
-class TetrisFrame extends Component {
+class Tetris extends Component {
     render() {
         return (
             <div>
@@ -15,4 +15,4 @@ class TetrisFrame extends Component {
 }
 
 
-export default TetrisFrame;
+export default Tetris;

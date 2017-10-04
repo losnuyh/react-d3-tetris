@@ -11,6 +11,7 @@ export default function(InnerComponent){
         render() {
             return (
                 <div
+                  id="tetris"
                   tabIndex="1"
                   onKeyDown={ e => this.handleKeyDown(e)}
                   >

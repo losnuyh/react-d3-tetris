@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import InputKeyComponent from './components/hoc/input';
+
 import Tetris from './components/tetris';
 
 
@@ -13,4 +15,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default InputKeyComponent(App);

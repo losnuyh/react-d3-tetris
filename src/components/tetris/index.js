@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './style.css';
 import Title from './title';
 import Frame from './frame';
+import Menu from './menu';
 
 
 class Tetris extends Component {
@@ -11,6 +12,7 @@ class Tetris extends Component {
             <div>
               <Title />
               <Frame />
+              <Menu />
             </div>
         );
     }

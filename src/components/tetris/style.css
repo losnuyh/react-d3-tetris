@@ -19,3 +19,8 @@ div.frame{
     border-radius: 10px;
     display: inline-block;
 }
+
+div.menu {
+    text-align: center;
+    padding: 20px;
+}

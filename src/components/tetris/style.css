@@ -1,0 +1,21 @@
+.container {
+    text-align: center;
+}
+
+div.title-container {
+    text-align: center;
+    padding: 35px;
+}
+
+b.main-title{
+    font-size: 66px;
+    color: #9D4;
+}
+
+div.frame{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 10px;
+    display: inline-block;
+}

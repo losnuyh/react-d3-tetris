@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './style.css';
 import Title from './title';
+import Frame from './frame';
 
 
 class Tetris extends Component {
@@ -9,6 +10,7 @@ class Tetris extends Component {
         return (
             <div>
               <Title />
+              <Frame />
             </div>
         );
     }

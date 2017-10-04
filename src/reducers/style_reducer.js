@@ -10,7 +10,7 @@ const INIT = {
 export default function(state=INIT, action) {
     switch(action.type){
     case TOGGLE_GRID:
-        return { grid: !state.grid };
+        return { ...state, grid: !state.grid };
     default:
         return state;
     }

@@ -21,17 +21,17 @@ export function toggleGrid() {
                 .attr('x2', 33*i )
                 .attr('y2', 676)
                 .attr('stroke-width', 1)
-                .attr('stroke', '#EEE');
+                .attr('stroke', '#999');
         }
 
-        for(let i=1; i < 21; i++){
+        for(let i=1; i < 20; i++){
             svg.append('line')
                 .attr('x1',1)
                 .attr('y1',33*i)
                 .attr('x2',660)
                 .attr('y2',33*i)
                 .attr('stroke-width', 1)
-                .attr('stroke', '#EEE');
+                .attr('stroke', '#999');
         }
 
     } else {

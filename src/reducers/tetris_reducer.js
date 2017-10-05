@@ -180,7 +180,52 @@ function _checkRight(tetrimino){
 
 
 function stack(tetrimino){
-    // line remove
+    for(let i=1; i<21 ; i++){
+        let fill_row = _lineCheck(i);
+        console.log('fill_row', fill_row);
+        if(fill_row){
+            // remove line
+            _removeLine(i);
+
+
+            // make down upper rows
+            _makeDownRows(i);
+        }
+    }
 
     return throw_tetrimino();
+}
+
+
+function _lineCheck(row){
+    for (let j=1; j<11; j++){
+        let fill = d3.select(`#px${j}-${row}`).attr('fill');
+        if(fill === 'transparent'){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function _removeLine(row){
+    for (let j=1; j<11; j++){
+        d3.select(`#px${j}-${row}`).attr('fill', 'transparent');
+    }
+}
+
+
+function _makeDownRows(row){
+    if (row===1){
+        return;
+    }
+    for (let i=(row-1); i>1; i--){
+        // 맨윗줄은 투명으로
+        for (let j=1; j<11; j++){
+            let pixel = d3.select(`#px${j}-${i}`);
+            let color = pixel.attr('fill');
+            pixel.attr('fill', 'transparent');
+            d3.select(`#px${j}-${i+1}`).attr('fill', color);
+        }
+    }
 }

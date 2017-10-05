@@ -1,5 +1,6 @@
 html, body, #root, #tetris {
     height: 100%;
+    background-color: #F0F0F0;
 }
 
 body {

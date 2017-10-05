@@ -25,6 +25,9 @@ export default function(state=INIT, action){
         if(!_checkBottom(state.tetrimino)){
             console.log("stack");
             let new_tetrimino = stack(state.tetrimino);
+            if (!new_tetrimino){
+                return INIT;
+            }
             return { ...state, tetrimino: new_tetrimino };
         }
         var new_tetrimino = reRender(state.tetrimino, 'DOWN');

@@ -8,7 +8,6 @@ import { toggleGrid } from '../../actions';
 class Menu extends Component {
     handleGridOpt(){
         this.props.toggle_grid();
-        console.log("after : ", this.props.grid);
     }
 
     render() {

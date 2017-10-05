@@ -27,11 +27,15 @@ export default function(state=INIT, action){
         var new_tetrimino = reRender(state.tetrimino, 'DOWN');
         return { ...state, tetrimino:new_tetrimino};
     case LEFT_TETRIMINO:
-        console.log(2);
+        if(!_checkLeft(state.tetrimino)){
+            return state;
+        }        
         var new_tetrimino = reRender(state.tetrimino, 'LEFT');
         return { ...state, tetrimino:new_tetrimino};
     case RIGHT_TETRIMINO:
-        console.log(3);
+        if(!_checkRight(state.tetrimino)){
+            return state;
+        }        
         var new_tetrimino = reRender(state.tetrimino, 'RIGHT');
         return { ...state, tetrimino:new_tetrimino};
     case ROTATE_TETRIMINO:
@@ -72,10 +76,7 @@ function rotate(tetrimino){
         for (var old_t of tetrimino){
             target.push(old_t.attr('id').replace('px','').split('-').map(v=>Number(v)));
         }
-        console.log('before', target);
         target = target.slice(0, target.length-1);
-        console.log('after', target);
-        console.log(target[1]);
         if (target[1][0] === target[0][0])
         return tetrimino;
     }
@@ -87,7 +88,6 @@ function rotate(tetrimino){
 
 
 function _checkBottom(tetrimino){
-
     var temp = {};
     for(let t of tetrimino){
         var value = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
@@ -104,8 +104,7 @@ function _checkBottom(tetrimino){
     for(var t in temp){
         target.push(temp[t][1]);
     }
-    console.log(temp);
-    console.log(target);
+
     for(let t of target){
         var pixel = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
         if(pixel[1] == 20){
@@ -114,7 +113,62 @@ function _checkBottom(tetrimino){
         var bottom = d3.select(`#px${pixel[0]}-${pixel[1]+1}`);
         
         if(bottom.attr('fill') !=='transparent'){
-            console.log(bottom.attr('fill'));
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function _checkLeft(tetrimino){
+    var temp = {};
+    for(let t of tetrimino){
+        var value = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
+        if(!temp[value[1]]){
+            temp[value[1]] = [value[0], t];
+        }
+    }
+
+    var target = [];
+    for(var t in temp){
+        target.push(temp[t][1]);
+    }
+
+    for(let t of target){
+        var pixel = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
+        if(pixel[0] == 1){
+            return false;
+        }
+        var left = d3.select(`#px${pixel[0]-1}-${pixel[1]}`);
+        
+        if(left.attr('fill') !=='transparent'){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function _checkRight(tetrimino){
+    var temp = {};
+    for(let t of tetrimino){
+        var value = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
+        temp[value[1]] = [value[0], t];
+    }
+
+    var target = [];
+    for(var t in temp){
+        target.push(temp[t][1]);
+    }
+
+    for(let t of target){
+        var pixel = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
+        if(pixel[0] == 10){
+            return false;
+        }
+        var left = d3.select(`#px${pixel[0]+1}-${pixel[1]}`);
+        
+        if(left.attr('fill') !=='transparent'){
             return false;
         }
     }

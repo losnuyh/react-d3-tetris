@@ -9,6 +9,7 @@ import {
 } from '../actions/types';
 
 import changePosition from '../func/change_position';
+import { throw_tetrimino } from '../func/throw_tetrimino';
 
 
 const INIT = {
@@ -22,7 +23,9 @@ export default function(state=INIT, action){
         return {...state, tetrimino: action.payload};
     case DOWN_TETRIMINO:
         if(!_checkBottom(state.tetrimino)){
-            return state;
+            console.log("stack");
+            let new_tetrimino = stack(state.tetrimino);
+            return { ...state, tetrimino: new_tetrimino };
         }
         var new_tetrimino = reRender(state.tetrimino, 'DOWN');
         return { ...state, tetrimino:new_tetrimino};
@@ -173,4 +176,11 @@ function _checkRight(tetrimino){
         }
     }
     return true;
+}
+
+
+function stack(tetrimino){
+    // line remove
+
+    return throw_tetrimino();
 }

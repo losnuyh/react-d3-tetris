@@ -8,7 +8,7 @@ export function startTetris() {
 }
 
 
-function throw_tetrimino(){
+export function throw_tetrimino(){
     const t_info = pick_tetrimino();
     switch(t_info.shape){
     case 'I':

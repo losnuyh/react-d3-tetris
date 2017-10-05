@@ -3,11 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { toggleGrid } from '../../actions';
+import { startTetris } from '../../func/throw_tetrimino';
 
 
 class Menu extends Component {
     handleGridOpt(){
         this.props.toggle_grid();
+    }
+
+    startNewGame(){
+        const tetrimino = startTetris();
+        console.log(tetrimino);
     }
 
     render() {
@@ -22,6 +28,15 @@ class Menu extends Component {
                   onClick={this.handleGridOpt.bind(this)}
                   />
               </label>
+
+              <br/>
+
+              <button
+                onClick={()=>{
+                    this.startNewGame();
+                }}>
+                NEW GAME
+              </button>
 
             </div>
         );

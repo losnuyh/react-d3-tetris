@@ -21,7 +21,7 @@ div.frame{
 }
 
 div.menu {
-    text-align: right;
+    text-align: center;
+    line-height: 200%;
     padding: 20px;
-    padding-right: 200px;
 }

@@ -13,34 +13,11 @@ class Menu extends Component {
         this.props.toggle_grid();
     }
 
-    _checkBottom(){
-        for(let t of this.props.tetrimino){
-            var target = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
-            if(target[1] == 20){
-                console.log(target[1]);
-                return false;
-            }
-            var bottom = d3.select(`#px${target[0]}-${target[1]+1}`);
-            
-            if(bottom.attr('fill') !=='transparent'){
-                console.log(bottom.attr('fill'));
-                return false;
-            }
-        }
-        return true;
-    }
-
-    _game(){
-//        if(this._checkBottom()){
-//            console.log("down");
-//            this.props.down();
-//        }
-    }
-
     startNewGame(){
         d3.selectAll('rect').attr('fill', 'transparent');
         const tetrimino = startTetris();
         this.props.regist_tetrimino(tetrimino);
+        window.game = setInterval(this.props.down, 500);
     }
 
     render() {

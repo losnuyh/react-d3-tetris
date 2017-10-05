@@ -23,9 +23,9 @@ export default function(state=INIT, action){
         return {...state, tetrimino: action.payload};
     case DOWN_TETRIMINO:
         if(!_checkBottom(state.tetrimino)){
-            console.log("stack");
             let new_tetrimino = stack(state.tetrimino);
             if (!new_tetrimino){
+                clearInterval(window.game);
                 return INIT;
             }
             return { ...state, tetrimino: new_tetrimino };
@@ -73,11 +73,9 @@ function reRender(tetrimino, to){
 function rotate(tetrimino){
     let color;
     if (tetrimino[0].attr('fill') === 'yellow'){
-        console.log("quit");
         return tetrimino;
     }
     if (tetrimino[0].attr('fill') === "cyan"){
-        console.log("bar");
         var target = [];
         for (var old_t of tetrimino){
             target.push(old_t.attr('id').replace('px','').split('-').map(v=>Number(v)));
@@ -85,9 +83,6 @@ function rotate(tetrimino){
         target = target.slice(0, target.length-1);
         if (target[1][0] === target[0][0])
         return tetrimino;
-    }
-    for (var old_t of tetrimino){
-        console.log(old_t.attr('id'));
     }
     return tetrimino;
 }
@@ -185,7 +180,6 @@ function _checkRight(tetrimino){
 function stack(tetrimino){
     for(let i=1; i<21 ; i++){
         let fill_row = _lineCheck(i);
-        console.log('fill_row', fill_row);
         if(fill_row){
             // remove line
             _removeLine(i);

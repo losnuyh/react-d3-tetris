@@ -3,7 +3,10 @@ import * as d3 from 'd3';
 import {
     TOGGLE_GRID,
     REGIST_TETRIMINO,
-    DOWN_TETRIMINO
+    DOWN_TETRIMINO,
+    LEFT_TETRIMINO,
+    RIGHT_TETRIMINO,
+    ROTATE_TETRIMINO
 } from './types';
 
 
@@ -53,5 +56,25 @@ export function registTetrimino(tetrimino) {
 export function downTetrimino(){
     return {
         type: DOWN_TETRIMINO
+    };
+}
+
+
+export function rightTetrimino(){
+    return {
+        type: RIGHT_TETRIMINO
+    };
+}
+
+
+export function leftTetrimino(){
+    return {
+        type: LEFT_TETRIMINO
+    };
+}
+
+export function rotateTetrimino(){
+    return {
+        type: ROTATE_TETRIMINO
     };
 }

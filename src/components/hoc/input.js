@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { downTetrimino } from '../../actions';
+import {
+    downTetrimino,
+    rightTetrimino,
+    leftTetrimino,
+    rotateTetrimino
+} from '../../actions';
 
 
 export default function(InnerComponent){
@@ -13,6 +18,16 @@ export default function(InnerComponent){
             switch(e.keyCode){
             case 40:
                 this.props.down();
+                break;
+            case 39:
+                this.props.right();
+                break;
+            case 37:
+                this.props.left();
+                break;
+            case 38:
+                this.props.up();
+                break;
             }
         }
 
@@ -31,9 +46,14 @@ export default function(InnerComponent){
     }
 
     function mapDispatchToProps(dispatch){
-        return bindActionCreators({down: downTetrimino}, dispatch);
+        return bindActionCreators(
+            {
+                down: downTetrimino,
+                left: leftTetrimino,
+                right: rightTetrimino,
+                up: rotateTetrimino
+            }, dispatch);
     }
 
     return connect(null, mapDispatchToProps)(InputKeyComponent);
 }
-

@@ -2,7 +2,8 @@ import * as d3 from 'd3';
 
 import {
     TOGGLE_GRID,
-    REGIST_TETRIMINO
+    REGIST_TETRIMINO,
+    DOWN_TETRIMINO
 } from './types';
 
 
@@ -45,5 +46,12 @@ export function registTetrimino(tetrimino) {
     return {
         type: REGIST_TETRIMINO,
         payload: tetrimino
+    };
+}
+
+
+export function downTetrimino(){
+    return {
+        type: DOWN_TETRIMINO
     };
 }

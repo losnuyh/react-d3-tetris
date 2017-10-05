@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { downTetrimino } from '../../actions';
 
 
 export default function(InnerComponent){
@@ -6,6 +10,10 @@ export default function(InnerComponent){
         
         handleKeyDown(e) {
             console.log(e.keyCode);
+            switch(e.keyCode){
+            case 40:
+                this.props.down();
+            }
         }
 
         render() {
@@ -22,6 +30,10 @@ export default function(InnerComponent){
         }
     }
 
-    return InputKeyComponent;
+    function mapDispatchToProps(dispatch){
+        return bindActionCreators({down: downTetrimino}, dispatch);
+    }
+
+    return connect(null, mapDispatchToProps)(InputKeyComponent);
 }
 

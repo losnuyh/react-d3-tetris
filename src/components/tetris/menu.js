@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { toggleGrid } from '../../actions';
+import { toggleGrid, registTetrimino } from '../../actions';
 import { startTetris } from '../../func/throw_tetrimino';
 
 
@@ -13,7 +13,7 @@ class Menu extends Component {
 
     startNewGame(){
         const tetrimino = startTetris();
-        console.log(tetrimino);
+        this.props.regist_tetrimino(tetrimino);
     }
 
     render() {
@@ -45,13 +45,15 @@ class Menu extends Component {
 
 function mapStateToProps(state) {
     return {
-        grid: state.style.grid
+        grid: state.style.grid,
+        tetrimino: state.tetris.tetrimino
     };
 };
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        toggle_grid: toggleGrid
+        toggle_grid: toggleGrid,
+        regist_tetrimino: registTetrimino
     }, dispatch);
 }
 

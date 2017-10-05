@@ -1,6 +1,9 @@
 import * as d3 from 'd3';
 
-import { TOGGLE_GRID } from './types';
+import {
+    TOGGLE_GRID,
+    REGIST_TETRIMINO
+} from './types';
 
 
 export function toggleGrid() {
@@ -37,3 +40,10 @@ export function toggleGrid() {
     };
 }
 
+
+export function registTetrimino(tetrimino) {
+    return {
+        type: REGIST_TETRIMINO,
+        payload: tetrimino
+    };
+}

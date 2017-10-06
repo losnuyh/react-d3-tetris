@@ -2,8 +2,10 @@ import * as d3 from 'd3';
 
 
 export default function rotate(tetrimino){
+    console.log("TETRIMINO", tetrimino);
     switch(tetrimino[0].attr('fill')){
-    case 'yello': // O
+    case 'yellow': // O
+        console.log("YELLOW");
         return tetrimino;
     case 'cyan': // I
         return tetrimino;
@@ -14,6 +16,7 @@ export default function rotate(tetrimino){
 
 
 function M3x3(tetrimino, color){
+    clearInterval(window.game);
     let metrix = [];
     let row = [];
     let col = [];
@@ -29,12 +32,12 @@ function M3x3(tetrimino, color){
         }
     }
     let row_base = Math.min(...row) - 1 ;
-    row.length === 2 ? row_base-- : '';
+    row.length === 2 ? row_base : '';
     let col_base = Math.min(...col) - 1 ;
     col.length === 2 ? col_base-- : '';
     let r_val = [];
     for (let p of metrix){
-
+        
         var col_v = p[0] - col_base;
         var row_v = p[1] - row_base;
 
@@ -47,11 +50,27 @@ function M3x3(tetrimino, color){
         } else {
             col_v= row_v,
             row_v = 1
-        }
-
+        };
         let r_row_v = row_v + row_base;
         let r_col_v = col_v + col_base;
         let rv = d3.select(`#px${r_col_v}-${r_row_v}`);
+        console.log('r_row_v', r_row_v);
+        console.log('r_col_v', r_col_v);
+        if ( r_row_v < 1 || r_row_v > 20 || r_col_v < 1 || r_col_v > 10) {
+            for(let p of tetrimino) {
+                p.attr('fill', color);
+            }
+            console.log(1111);
+            console.log('return : ', tetrimino);
+            return tetrimino;
+        } else if( rv.attr('fill') !== 'transparent'){
+            for(let p of tetrimino) {
+                p.attr('fill', color);
+            }
+            console.log(2222)
+            return tetrimino;
+        }
+
         rv.attr('fill', color);
         r_val.push(rv);
     }

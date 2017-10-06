@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
 
 import {
     downTetrimino,
@@ -25,7 +26,8 @@ export default function(InnerComponent){
                 this.props.left();
                 break;
             case 38:
-                this.props.up();
+                const up = _.throttle(this.props.up, 500);
+                up();
                 break;
             }
         }

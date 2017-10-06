@@ -35,7 +35,6 @@ export default function(state=INIT, action){
         return { ...state, tetrimino:new_tetrimino};
     case LEFT_TETRIMINO:
         if(!_checkLeft(state.tetrimino)){
-            console.log("설마?");
             return state;
         }        
         var new_tetrimino = reRender(state.tetrimino, 'LEFT');
@@ -108,7 +107,6 @@ function _checkBottom(tetrimino){
 
 
 function _checkLeft(tetrimino){
-    console.log('in_check', tetrimino);
     var temp = {};
     for(let t of tetrimino){
         var value = t.attr('id').replace('px', '').split('-').map(v=>Number(v));

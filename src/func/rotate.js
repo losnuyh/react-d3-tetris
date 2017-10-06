@@ -85,7 +85,6 @@ function sortSelection(a, b){
 
 
 function M4x4(tetrimino, color){
-    clearInterval(window.game);
     let metrix = [];
     let row = [];
     let col = [];

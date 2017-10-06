@@ -10,8 +10,7 @@ export function startTetris() {
 
 export function throw_tetrimino(){
     const t_info = pick_tetrimino();
-//    switch(t_info.shape){
-    switch('O'){
+    switch(t_info.shape){
     case 'I':
         var p1 = d3.select('#px4-1');
         var p2 = d3.select('#px5-1');

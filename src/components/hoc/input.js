@@ -12,9 +12,8 @@ import {
 
 export default function(InnerComponent){
     class InputKeyComponent extends Component {
-        
         handleKeyDown(e) {
-            console.log(e.keyCode);
+            console.log('input key : ', e.keyCode);
             switch(e.keyCode){
             case 40:
                 this.props.down();

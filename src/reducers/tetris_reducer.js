@@ -10,6 +10,7 @@ import {
 
 import changePosition from '../func/change_position';
 import { throw_tetrimino } from '../func/throw_tetrimino';
+import rotate from '../func/rotate';
 
 
 const INIT = {
@@ -34,6 +35,7 @@ export default function(state=INIT, action){
         return { ...state, tetrimino:new_tetrimino};
     case LEFT_TETRIMINO:
         if(!_checkLeft(state.tetrimino)){
+            console.log("설마?");
             return state;
         }        
         var new_tetrimino = reRender(state.tetrimino, 'LEFT');
@@ -70,22 +72,6 @@ function reRender(tetrimino, to){
     return new_tetrimino_state;
 }
 
-function rotate(tetrimino){
-    let color;
-    if (tetrimino[0].attr('fill') === 'yellow'){
-        return tetrimino;
-    }
-    if (tetrimino[0].attr('fill') === "cyan"){
-        var target = [];
-        for (var old_t of tetrimino){
-            target.push(old_t.attr('id').replace('px','').split('-').map(v=>Number(v)));
-        }
-        target = target.slice(0, target.length-1);
-        if (target[1][0] === target[0][0])
-        return tetrimino;
-    }
-    return tetrimino;
-}
 
 
 function _checkBottom(tetrimino){
@@ -122,6 +108,7 @@ function _checkBottom(tetrimino){
 
 
 function _checkLeft(tetrimino){
+    console.log('in_check', tetrimino);
     var temp = {};
     for(let t of tetrimino){
         var value = t.attr('id').replace('px', '').split('-').map(v=>Number(v));
